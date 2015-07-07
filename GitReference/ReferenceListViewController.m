@@ -19,13 +19,14 @@ static CGFloat margin = 15;
 
 - (NSArray *)gitCommands {
     
-    return @[@{@"git status": @"  shows changed files"},
-             @{@"git diff": @"  shows actual changes"},
-             @{@"git add .": @"  adds changed files to the commit"},
-             @{@"git commit -m \"notes\"": @"  commits the changes"},
-             @{@"git push origin _branch_": @"  pushes commits to branch named _branch_"},
-             @{@"git log": @"  displays progress log"},
-             @{@"git comment --amend": @"  re-enter last commit message"}
+    return @[@{@" git ahead": @"   successfully commit changes before anyone else"},
+             @{@" git along": @"   having no conflicts when merging branches"},
+             @{@" git even": @"   push back to someone who pushed to you first"},
+             @{@" git it": @"   when the changes finally make sense"},
+             @{@" git it together": @"   making some long overdue commits, pulls, or pushes"},
+             @{@" git lost": @"   sending your entire repository to the trash bin after hours of frustration"},
+             @{@" git over": @"   undoing a commit and leaving a branch that just didn't work out"},
+             @{@" git r done": @"   finish the project, already!!"},
              ];
     
 }
@@ -44,11 +45,12 @@ static CGFloat margin = 15;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIScrollView *myListView = [[UIScrollView alloc] initWithFrame:CGRectMake (10, 64, 300, 600)];
-    myListView.backgroundColor = [UIColor yellowColor];
+    UIScrollView *myListView = [[UIScrollView alloc] initWithFrame:CGRectMake (10, 0, 300, 600)];
+    myListView.contentSize = CGSizeMake(300, 665);
+
     [self.view addSubview:myListView];
     
-    self.title = @"Git Title";
+    self.title = @"Git Reference Guide";
     
     CGFloat y = 0;
     CGFloat h;
@@ -57,23 +59,22 @@ static CGFloat margin = 15;
         for (NSString *command in d) {
             
             UILabel *commandLabel = [UILabel new];
-            h = [self heightOfReferenceString:command];
+            h = [self heightOfReferenceString:command]+10;
             commandLabel.frame = CGRectMake(0, y, 300, h);
-            commandLabel.backgroundColor = [UIColor greenColor];
+            commandLabel.backgroundColor = [UIColor cyanColor];
             commandLabel.text = command;
-            commandLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-            commandLabel.lineBreakMode = 0;
+            commandLabel.font = [UIFont boldSystemFontOfSize:16];
             [myListView addSubview:commandLabel];
             
             y = y + h;
             
             UILabel *referenceLabel = [UILabel new];
-            h = [self heightOfReferenceString:d[command]];
+            h = [self heightOfReferenceString:d[command]]+20;
             referenceLabel.frame = CGRectMake(0, y, 300, h);
-            referenceLabel.backgroundColor = [UIColor redColor];
+            referenceLabel.numberOfLines = 0;
+            referenceLabel.backgroundColor = [UIColor lightGrayColor];
             referenceLabel.text = d[command];
-            referenceLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-            referenceLabel.lineBreakMode = 5;
+            referenceLabel.font = [UIFont systemFontOfSize:16];
             [myListView addSubview:referenceLabel];
             
             y = y + h;
@@ -82,7 +83,7 @@ static CGFloat margin = 15;
         }
         
     }
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
