@@ -7,6 +7,7 @@
 //
 
 #import "GRAppDelegate.h"
+#import "ReferenceListViewController.h"
 
 @implementation GRAppDelegate
 
@@ -14,9 +15,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    [self.window setRootViewController:[[UINavigationController alloc] initWithRootViewController:[[ReferenceListViewController alloc] init]]];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+    
 }
 
 @end
